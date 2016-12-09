@@ -2,8 +2,34 @@
 
 require 'uri'
 
-db = URI.parse ARGV.first
+input = ARGV.first
 
+if !input
+  puts "Usage: dburl [DATABASE_URL]"
+  exit
+end
+
+def invalid!
+  puts "Couldn't parse your input. Was it a valid database URL?"
+  exit
+end
+
+begin
+  db = URI.parse ARGV.first
+rescue URI::InvalidURIError
+  invalid!
+else
+  invalid! unless db.scheme
+end
+
+# To add a support for a new DB, add a new condition
+# to this case staement.
+#
+# Use the `db` object to build a `cmd` string, which gets
+# printed and executed at the bottom of the file.
+#
+# Set the $debug global to disable execution for
+# convenient hacking.
 case db.scheme
 when 'postgres'
   cmd = "psql"
@@ -19,4 +45,4 @@ else
 end
 
 puts cmd
-Kernel.exec cmd
+Kernel.exec cmd unless $debug

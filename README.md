@@ -5,20 +5,24 @@ Easily connect to your database.
 Just `$ dburl postgres://username:password@hostname:1234/dbname` and you'll
 be dropped into a `psql` shell.
 
-#### Currently Supported
+**Currently Supported**
 * Postgres
 
-...but adding a new one is [easy](://github.com/dashkb/dburl/blob/master/bin/dburl#L8)!
+...but adding a new one is [easy](https://github.com/dashkb/dburl/blob/master/bin/dburl#L25)!
 
-## Installation
+### Installation
 
 `$ gem install dburl`
 
-## Contributing
+### Contributing
 
 Bug reports, pull requests, and support for more DBs are welcome on GitHub at https://github.com/dashkb/dburl.
 
-## License
+### License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+
+### Pronunciation
+
+DEE-burl
 
