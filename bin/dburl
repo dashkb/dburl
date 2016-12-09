@@ -2,7 +2,25 @@
 
 require 'uri'
 
-db = URI.parse ARGV.first
+input = ARGV.first
+
+if !input
+  puts "Usage: dburl [DATABASE_URL]"
+  exit
+end
+
+def invalid!
+  puts "Couldn't parse your input. Was it a valid database URL?"
+  exit
+end
+
+begin
+  db = URI.parse ARGV.first
+rescue URI::InvalidURIError
+  invalid!
+else
+  invalid! unless db.scheme
+end
 
 case db.scheme
 when 'postgres'
