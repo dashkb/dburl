@@ -4,8 +4,8 @@ require 'uri'
 
 input = ARGV.first
 
-if !input
-  puts "Usage: dburl [DATABASE_URL]"
+unless input
+  puts 'Usage: dburl [DATABASE_URL]'
   exit
 end
 
@@ -32,7 +32,7 @@ end
 # convenient hacking.
 case db.scheme
 when 'postgres'
-  cmd = "psql"
+  cmd = 'psql'
   cmd += " -h #{db.host}" if db.host
   cmd += " -p #{db.port}" if db.port
   cmd += " -U #{db.user}" if db.user
@@ -41,7 +41,7 @@ when 'postgres'
   cmd = "PGPASSWORD=#{db.password} #{cmd}" if db.password
 else
   puts "This script doesn't support #{db.scheme} yet."
-  puts "Please add it and open a pull request."
+  puts 'Please add it and open a pull request.'
 end
 
 puts cmd
