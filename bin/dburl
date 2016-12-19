@@ -1,6 +1,13 @@
 #!/usr/bin/env ruby
 
 require 'uri'
+require 'optparse'
+
+OptionParser.new do |opts|
+  opts.on '-d', '--debug', 'Print connection command and exit' do
+    $debug = true
+  end
+end.parse!
 
 input = ARGV.first
 
@@ -14,8 +21,10 @@ def invalid!
   exit
 end
 
+
 begin
   db = URI.parse ARGV.first
+  db.path = nil if db.path.empty?
 rescue URI::InvalidURIError
   invalid!
 else
@@ -39,6 +48,12 @@ when 'postgres'
   cmd += " -d #{db.path[1..-1]}" if db.path
 
   cmd = "PGPASSWORD=#{db.password} #{cmd}" if db.password
+when 'redis'
+  cmd = 'redis-cli'
+  cmd += " -h #{db.host}" if db.host
+  cmd += " -p #{db.port}" if db.port
+  cmd += " -a #{db.password}" if db.password
+  cmd += " -n #{db.path[1..-1]}" if db.path
 else
   puts "This script doesn't support #{db.scheme} yet."
   puts 'Please add it and open a pull request.'

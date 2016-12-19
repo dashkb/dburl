@@ -7,8 +7,9 @@ be dropped into a `psql` shell.
 
 **Currently Supported**
 * Postgres
+* Redis
 
-...but adding a new one is [easy](https://github.com/dashkb/dburl/blob/master/bin/dburl#L25)!
+...and adding a new one is [easy](https://github.com/dashkb/dburl/blob/master/bin/dburl#L25)!
 
 ### Installation
 
