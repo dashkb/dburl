@@ -54,6 +54,14 @@ when 'redis'
   cmd += " -p #{db.port}" if db.port
   cmd += " -a #{db.password}" if db.password
   cmd += " -n #{db.path[1..-1]}" if db.path
+when 'mysql'
+  cmd = 'mysql'
+
+  cmd += " -h #{db.host}" if db.host
+  cmd += " -P #{db.port}" if db.port
+  cmd += " -u #{db.user}" if db.user
+  cmd += " -D #{db.path[1..-1]}" if db.path
+  cmd += " -P #{db.password}" if db.password
 else
   puts "This script doesn't support #{db.scheme} yet."
   puts 'Please add it and open a pull request.'
