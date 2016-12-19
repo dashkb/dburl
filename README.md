@@ -9,7 +9,7 @@ be dropped into a `psql` shell.
 * Postgres
 * Redis
 
-...and adding a new one is [easy](https://github.com/dashkb/dburl/blob/master/bin/dburl#L25)!
+...and adding a new one is [easy](https://github.com/dashkb/dburl/blob/master/bin/dburl#L34)!
 
 ### Installation
 
