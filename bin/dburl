@@ -47,7 +47,7 @@ when 'postgres'
   cmd += " -U #{db.user}" if db.user
   cmd += " -d #{db.path[1..-1]}" if db.path
 
-  cmd = "PGPASSWORD=#{db.password} #{cmd}" if db.password
+  cmd = "PGPASSWORD='#{db.password}' #{cmd}" if db.password
 when 'redis'
   cmd = 'redis-cli'
   cmd += " -h #{db.host}" if db.host
